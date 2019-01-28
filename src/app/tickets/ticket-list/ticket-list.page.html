@@ -1,0 +1,45 @@
+<ion-header>
+ <app-header></app-header>
+</ion-header>
+
+<ion-content >
+  <div  *ngFor="let item of ticketArray">
+    <ion-card>
+        <ion-row>
+            <ion-col size="6" align-self-start class="txt">
+                <svg width="400" height="100">
+                <g> <rect x="0" y="0" width="70" height="100"  fill="black"></rect>
+                    <rect x="0" y="0" width="100" height="100" rx="30" ry="30" fill="black"></rect>
+                    <text x="30" y="60" 
+                    style="font-family: Varela Round" font-size="35" fill="white">{{item.notApproved}}</text>
+                  </g>
+                  </svg>
+            </ion-col>
+            <ion-col align-self-center>
+                <h2 class="txt" (click)="openLink(item)">{{item.title}}</h2>
+            </ion-col>
+          
+          </ion-row>
+      <ion-row>
+     
+        <!-- <ion-col size="3" fill="red">
+         
+            <div class="container" >
+             
+                <!-- <img src="assets/imgs/rect.png" alt="Snow" class="rect-img" start>   
+              
+                <div class="centered">{{item.notApproved}}</div>
+             
+              </div>
+             
+            <!-- <img src="assets/imgs/rect.png" height="100px" width=100 start><h1 class="centered">18</h1> 
+        </ion-col>
+        <ion-col text-center style="vertical-align: -webkit-baseline-middle;">
+            <h2 class="txt ttl" (click)="openLink(item)">{{item.title}}</h2>
+        </ion-col> -->
+      </ion-row>
+      <!-- <ion-item><img src="assets/imgs/rect.svg" height="100px" width=100 item-start></ion-item> -->
+      
+    </ion-card>
+    </div>
+</ion-content>

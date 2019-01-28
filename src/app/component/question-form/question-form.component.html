@@ -1,0 +1,64 @@
+
+<ion-grid no-padding>
+
+    <ion-row>
+      <br>
+      <br>
+    </ion-row>
+    <ion-row>
+      <ion-col col-11>
+        
+        <div >
+        <form  [formGroup]="form" >
+         
+            <div  *ngFor="let question of qstArray" class="form-row" >
+          
+              <br><br><br><br>
+            
+              <app-question-form-field   [question]="question" [form]="form"   #quizform></app-question-form-field >
+              <!-- <div style="color: red; padding-top: 0.2rem" showWhen="req" > Required</div> -->
+              <br>
+              
+            </div>
+    
+          </form>
+        </div>
+      
+        <div *ngIf="showDone"  text-center ><img src="assets/imgs/circular_done.svg" width="150px" height="150px">
+          <div class="txtdone">Your done!</div>
+          <div>
+            <br><br>
+            <img src="assets/imgs/btn_save.svg" width="200px" (click)="saveQuestionnaire()">
+          </div>
+          </div>
+      
+        </ion-col>
+    </ion-row>
+    <!-- <ion-row>
+    --><ion-list>
+        <!-- <ion-col align-self-end > -->
+          <ion-item lines="none" >
+             
+          <div  *ngIf="!showDone" item-end >
+              <!-- <img *ngIf="showDel"  src="assets/imgs/btn_delete.svg" width=100  (click)="onClkDelete($event)">
+              &nbsp;&nbsp; -->
+             
+         <img src="assets/imgs/nextbtn.svg"  (click)="onClkNext($event)" >
+         </div>
+         <br><br><br><br>
+         
+         <ion-label id="myLabel">&nbsp;</ion-label>
+       </ion-item>
+      <!-- </ion-col> -->
+    </ion-list>
+        <!--   
+   
+  
+  </ion-row> -->
+  
+  <ion-row >
+      <br><br><br><br>
+  </ion-row>
+  </ion-grid>
+  
+   

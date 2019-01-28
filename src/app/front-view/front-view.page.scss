@@ -1,0 +1,22 @@
+.txt{
+    font-family: 'Varela Round';
+    color: #000000;
+    font-style: normal;
+    font-weight: normal;
+}
+.ipbox{
+    height: 40px;  
+    background: #FFFFFF;
+    border: 1px solid #CBCBCB;
+    box-sizing: border-box;
+    width: -webkit-fill-available ;
+}
+.select-text {
+    -ms-flex: 1;
+    flex: 1;
+    min-width: 16px;
+    font-size: inherit;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow:none !important;
+}

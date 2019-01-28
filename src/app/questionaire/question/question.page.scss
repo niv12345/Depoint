@@ -1,0 +1,35 @@
+div.static {
+    position: fixed;
+    z-index: 10;
+    margin-left: 20%;
+    margin-top:25%;
+    font-weight:'bold';
+}
+.score{
+    color: #6FCF97;
+    font-family: 'Varela Round';
+    font-size: 35vw;
+    margin-bottom: 0;
+    margin-top: 0;
+    font-weight:'bold';
+     
+}
+.yscore{
+    font-family: 'Varela Round';
+    font-size: 5vw;
+    margin-top: 50; 
+    margin-bottom: 0;
+    font-weight:'bold';
+}
+.cuname{
+    font-size: 3vw;
+}
+.crtdate{
+    font-size: 3vw;
+}
+.txt{
+    font-family: 'Varela Round';
+    color: #000000;
+    font-style: normal;
+    font-weight: normal;
+  }

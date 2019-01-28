@@ -1,0 +1,26 @@
+<ion-header>
+<app-header></app-header>
+<ion-toolbar  color="light" >
+
+  <ion-title class="txt">Immidiate attention</ion-title>
+  <ion-back-button slot="start" >
+    </ion-back-button>
+</ion-toolbar>
+</ion-header>
+<ion-content >
+  <ion-list >
+    <div *ngFor="let item of actionArray" class="txt" no-lines>
+      <ion-card style="height: 60px;" (click)="onClkCard(item)">
+        <ion-row>
+          <ion-col>
+              <p class="ttl" > {{item.title}}</p>
+          </ion-col>
+        </ion-row>
+  
+      </ion-card>
+     </div>
+     <router-outlet>
+       
+     </router-outlet>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,138 @@
+
+<div *ngIf="question && question.qtype!=undefined" >
+    <div [formGroup]="form" #Content>
+      <p class="qst" [attr.for]="question.id" >{{question.question}}</p>
+      <div [ngSwitch]="question.qtype">
+        <div *ngSwitchCase="'1'">
+                <div *ngIf="question.multichoice == 0" >
+                            <input class="ipbox"  
+                            [formControlName]="question.id"
+                            [id]="question.id" type="text" 
+                            (change)="chkData($event,question)" >
+                            <div style="color: red; padding-top: 0.2rem" *ngIf="req(question.required)"> Required</div>
+                            <!-- <div *ngIf="submitted && f.qntname.errors" class="invalid-feedback">
+                                    <div *ngIf="f.qntname.errors.required">First Name is required</div>
+                                </div> -->
+                </div>
+        </div>
+         <div *ngSwitchCase="'1'">
+                <div  *ngIf="question.multichoice == 1" >       
+                            <textarea  class="ipbox" rows="5"
+                                    [formControlName]="question.id"
+                                    [id]="question.id" 
+                                    (change)="chkData($event)">
+                            </textarea>
+                            <div style="color: red; padding-top: 0.2rem" *ngIf="req(question.required)"> Required</div>
+                </div>
+        </div>    
+        <div *ngSwitchCase="'2'">
+                 <div class="radio">
+                        <div  *ngFor="let item of question.options; let i = index;" [attr.for]="item">
+                         <input type="checkbox"  
+                                class="chkbox"   
+                                [id]="item.id" 
+                                [value]="item.id" 
+                                (change)="changeValue($event,question.id,item.id)"  >
+                           &nbsp;{{item.qoption}}
+                    </div>
+                    <div style="color: red; padding-top: 0.2rem" *ngIf="req(question.required)"> Required</div>
+            </div>
+        </div>  
+        <div *ngSwitchCase="'3'">
+           <div *ngIf="question.usecamera==0">
+                   <br>
+                    <div  text-center [hidden]="!showInput" >
+                                    <img src="assets/imgs/clk_file.svg" type="file" width=200 class="camera" (click)="file.click()" value=getFile ><br>
+                                    <input type="file" accept="image/*" #file [hidden]="true" (change)="selectdocFile($event,question.id)">
+                                    <div style="color: red; padding-top: 0.2rem" *ngIf="req(question.required)"> Required</div>
+                            </div>
+           </div>  
+           <div *ngIf="question.usecamera==1" >
+                   <br>          
+                    <div  text-center [hidden]="!showPreview">
+                                    <img src="assets/imgs/clk_camera.svg" type="file"  width=200 class="camera" (click)="takePicture($event,question.id)">
+                                    
+                    </div>
+            </div>   
+        </div>
+        <div *ngSwitchCase="'4'">
+                    <input class="ipbox"  
+                    [formControlName]="question.id"
+                    [id]="question.id" type="number" >
+                    <div style="color: red; padding-top: 0.2rem" *ngIf="req(question.required)"> Required</div>
+        </div>
+        <div *ngSwitchCase="'5'" >
+                    <input type="date" displayFormat="MMMM DD YYYY"  class="ipbox" 
+                    [formControlName]="question.id"
+                    [id]="question.id" type="date" >
+                    <div style="color: red; padding-top: 0.2rem" *ngIf="req(question.required)"> Required</div>
+        </div>
+         <div *ngSwitchCase="'6'">             
+                            <select class="ipbox"  [formControlName]="question.id" [id]="question.id" >
+                                 <option *ngFor="let item of question.options" [value]="item.id">
+                                                        {{item.qoption}}
+                                 </option>
+                            </select>  
+                            <div style="color: red; padding-top: 0.2rem" *ngIf="req(question.required)"> Required</div>      
+         </div>
+         <div *ngSwitchCase="'7'" >
+                    <input type="time" class="ipbox"   [formControlName]="question.id"
+                    [id]="question.id" >
+                    <div style="color: red; padding-top: 0.2rem" *ngIf="req(question.required)"> Required</div>
+         </div>
+          <div *ngSwitchCase="'8'" >
+                 <ion-button expand="full" (click)="openModal(question)">Signature Pad</ion-button>
+                 <div><input type="image" [src]="signatureImg" 
+                    [id]="question.id" *ngIf="signatureImg" /></div>
+                    <div style="color: red; padding-top: 0.2rem" *ngIf="req(question.required)"> Required</div>
+                 
+         </div>
+       
+         <div *ngSwitchCase="'9'" >
+                    <input class="ipbox" 
+                    [formControlName]="question.id"
+                    [id]="question.id" [type]="question.qtype" >   
+                    <div style="color: red; padding-top: 0.2rem" *ngIf="req(question.required)"> Required</div>
+         </div>
+         <div text-wrap *ngSwitchCase="'10'"> 
+                 <p>
+                         
+                 </p>  
+         </div>   
+         <div *ngSwitchCase="'11'" text-center value='yes' >
+                     <br>
+                     <div *ngIf="yesno" > <img src="assets/imgs/no-yes.png" (click)="toggleYes(question.id)"></div>
+                     <div *ngIf="!yesno" > <img src="assets/imgs/yes-no.png" (click)="toggleNo(question.id)"></div>
+           
+         </div>
+         <!-- <ion-toggle *ngSwitchCase="'11'" text-center  [formControlName]="question.id" (ionChange)="toggleYes($event)"
+         [id]="question.id" >
+         </ion-toggle>       
+           -->
+    
+      </div> 
+    
+    </div>
+    
+    
+    <div *ngFor="let item of lastImage" >
+    <img src="{{item}}" style="width: 300px;" [hidden]="lastImage === null">
+    </div>
+    </div>
+    <div [hidden]="showInput">
+                    <div  class="ipbox1" >
+                            <img src="assets/imgs/ic_file.svg" id="ic" width=13>&nbsp;
+                            <b class="fname" >{{getFile}}</b>
+                            <!-- <input type="file" accept="image/*" #file [hidden]="true" (change)="selectdocFile($event,question.id)"> -->
+                    </div><br>
+                   <div text-center class="camera"> 
+                           <img src="assets/imgs/btn_delete.svg" width=100  (click)="clkDelBtn(selectedFiles)">&nbsp;
+                           <img src="assets/imgs/upload_img.svg" width=100  (click)="upload(selectedFiles)">
+                    </div> 
+            </div>
+            <div text-center [hidden]="showPreview" > 
+                            <img [src]="imageURL"  #rcorners3 class="cameraimg" *ngIf="imageURL" width=200 /><br>
+                           <div text-center>
+                           <img src="assets/imgs/btn_delete.svg" width=100  (click)="clkCameraDelBtn(photoName)"></div>
+                           
+                     </div>

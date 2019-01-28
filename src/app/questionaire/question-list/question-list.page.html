@@ -1,0 +1,20 @@
+<ion-header >
+  <ion-toolbar color="dark" slot="start">
+    <ion-title slot="start" class="txt htxt" style="color:white;">Complete the following questionnaire</ion-title>
+  </ion-toolbar>
+</ion-header>
+<div class="static" id="static">
+    <progress-bar [progress]="per"  [color-degraded]="{'0': '#f4f4f4',  '20': '#EB5757', '50': '#F2994A','90': '#6FCF97'}"></progress-bar>
+  </div>
+<ion-content padding>
+<app-question-form text-wrap (percentEvent)="progressViewer($event)" [question]="questionArray" [ids]="ids"></app-question-form>
+</ion-content>
+<ion-footer class="static1">
+  
+    <ion-item lines="none">
+      <ion-buttons slot="end">
+        
+     <img src="assets/imgs/btncancel.svg" (click)="onClkCancel()" width="170" >
+    </ion-buttons>
+    </ion-item>
+  </ion-footer>

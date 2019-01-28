@@ -9,3 +9,32 @@
 @import '~@ionic/angular/css/text-alignment.css';
 @import '~@ionic/angular/css/text-transformation.css';
 @import '~@ionic/angular/css/flex-utils.css';
+body {
+    margin: 0;
+  }
+  .demo-full-width {
+    width: 100%;
+  }
+  .margin-top {
+    margin-top: 15px;
+  }
+  .margin-left {
+    margin-left: 10px;
+  }
+  .radio-label-padding {
+    padding-right: 10px;
+    color: grey;
+  }
+  .form {
+    margin-left: 10px;
+    border: 2px solid lightgray;
+    width: 600px;
+    padding-left: 5px;
+    margin-top: 10px;
+  }
+  .txt{
+    font-family: 'Varela Round';
+    color: #000000;
+    font-style: normal;
+    font-weight: normal;
+  }

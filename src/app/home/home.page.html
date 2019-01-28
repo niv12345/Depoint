@@ -1,12 +1,39 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-toolbar>
+<app-header ></app-header>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>If you get lost, the <a target="_blank" rel="noopener" href="https://beta.ionicframework.com/docs/">docs</a> will be your guide.</p>
-</ion-content>
+<ion-content>
+
+    <ion-grid>     
+      <ion-row>      
+        <ion-col size="4" text-end>           
+                <ion-avatar ><img  src="{{profilePic}}"></ion-avatar>
+        </ion-col>    
+        <ion-col size="5" text-center>
+            <p class="welcome-txt">Hi {{firstName}} {{lastName}}</p>
+            <hr class="divider"/>
+            <p >{{usreRole}}<br/> {{userBranch}} </p>
+        </ion-col>
+        <ion-col size="3" text-end>
+            <img class="brect" src="assets/imgs/half-round.svg" item-end>
+        </ion-col>
+      </ion-row>
+  
+      <ion-grid>      
+      <ion-row >   
+        <ion-col *ngFor="let item of frontPage; let i = index;" size="6" text-center class="rect1" >
+         <div (click)="openLink(item)"  class="rect">
+            <img src="{{imgUrl(item.image_src)}}"  class="imgprice" ><br>
+            <span> {{item.title}}</span>  <div>&nbsp;</div>
+         </div>           
+        </ion-col>   
+      </ion-row>
+  
+    </ion-grid>
+    </ion-grid>
+  <app-footer></app-footer>
+   
+  
+  
+  </ion-content>
+  

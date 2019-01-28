@@ -1,0 +1,15 @@
+<ion-content >
+    <ion-item lines="none">
+   <ion-icon size="large" slot="end" name="close" backdropDismiss="true" (click)="clkClose()"></ion-icon>
+</ion-item>
+        
+ 
+
+  
+    <ion-list padding > 
+        <div *ngFor="let item of fabMenu">
+       <div class="box" (click)="onClkBox(item)"><p class="itemtt">{{item.title}}</p></div><br>
+      </div>
+  </ion-list>
+
+</ion-content>

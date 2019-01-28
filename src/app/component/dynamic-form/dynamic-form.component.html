@@ -1,0 +1,16 @@
+ <div>
+      <form  [formGroup]="form">
+        <div *ngFor="let question of question" class="form-row">
+          <app-question [question]="question" [form]="form"></app-question>
+        </div>
+      </form>
+      <ion-item  slots="end" lines="none">
+        <ion-row>
+            <ion-col size="2"></ion-col>
+            <ion-col size="4"> <ion-button  expand="full" size="default" (click)="onSubmit()" color="dark" ><img src="assets/imgs/icsave.png">&nbsp;Save</ion-button> &nbsp;&nbsp;</ion-col>
+            <ion-col size="5"><ion-button  expand="full" size="default" (click)="onClkClose()" color="danger"  ><img src="assets/imgs/icclose.png">&nbsp;Cancel</ion-button></ion-col>
+            <ion-col size="1"></ion-col>
+      </ion-row>
+      </ion-item>  
+    </div>  
+    

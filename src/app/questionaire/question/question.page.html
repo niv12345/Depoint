@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-back-button></ion-back-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <div *ngIf="!showContent" >
+    <h2 class="txt" text-wrap>Complete the following questionnaire</h2>
+    
+  <ion-item>
+    
+  </ion-item>
+    <ion-item  >        
+        <p *ngIf="cuname"  class="cuname txt">{{cuname}}</p>          
+        <div *ngIf="cdate" class="crtdate txt" slot="end" >{{cdate | date:'EEEE dd MMMM yyyy HH:mm'}}</div>
+    </ion-item>
+    
+    <div text-center>
+    <img src="assets/imgs/rectbtn.svg" width="200" height="100" (click)="goToQuestion(questionArray)">
+    </div>
+    </div>
+    <div *ngIf="showContent">
+        <h2 class="txt">Professional knowledge test</h2>
+        <hr>
+        <ion-item  no-lines>        
+            <p *ngIf="cuname"  class="cuname txt">{{cuname}}</p>          
+            <div  *ngIf="cdate" class="crtdate txt" item-end >{{cdate | date:'EEEE dd MMMM yyyy HH:mm'}}</div>
+      </ion-item>
+        <hr>
+        <div text-center>
+          <div>
+            <p  class="txt yscore">Your Score</p>
+            <p  class="txt score">89</p>
+          </div>
+        <img src="assets/imgs/chk_ans.svg" width="200" height="100" (click)="goToQuestion(questionArray)">
+        </div>
+        </div>
+</ion-content>

@@ -1,0 +1,40 @@
+
+  <ion-header>
+
+  <ion-toolbar >  
+
+      <ion-row >
+        <ion-col size="5" *ngIf="logo" >
+            <img [src]="logo" item-start class="logo" (click)="onClkLogo()">   
+        </ion-col>
+        <ion-col size="5" *ngIf="!logo" >
+                <img src="assets/imgs/depoint-logo.svg" item-start class="logo" (click)="onClkLogo()">   
+            </ion-col>
+        <ion-col size="7" text-end>
+             <img src="assets/imgs/search-icon.svg"  mouseover style="cursor: pointer;" (click)="toggle()"  class="search" >
+            <img src="assets/imgs/earth.svg" (click)="onClkGlobe()" mouseover style="cursor: pointer;"  class="earth" >  <span class="bdge1"><ion-badge color="danger">{{bdgeEarth}}</ion-badge></span>
+            <img src="assets/imgs/bell.svg" mouseover style="cursor: pointer;" (click)="onClkBell()"  class="bell" > <span class="bdge2"><ion-badge color="danger">{{bdgeBell}}</ion-badge></span> 
+           <img src="assets/imgs/menu.svg" mouseover style="cursor: pointer;" (click)="openMenu()"  item-end class="menu" >
+    
+        </ion-col>
+     
+
+    </ion-row>
+    <div  *ngIf="toggled">
+        <ion-icon *ngIf="!toggled" (click)="toggle()" name="search"></ion-icon> 
+       <ion-searchbar       
+         
+          (ionInput)="getItems($event)"
+          (ionCancel)="cancelSearch($event)"
+          (ionClear) = "cancelSearch($event)"
+          [showCancelButton]="true">
+       </ion-searchbar>
+       
+   </div>
+ 
+    </ion-toolbar>
+  </ion-header>
+   
+
+ 
+ 

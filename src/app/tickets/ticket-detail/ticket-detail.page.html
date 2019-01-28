@@ -1,0 +1,50 @@
+<ion-header >
+  <ion-toolbar>
+   <ion-back-button>
+     
+   </ion-back-button>
+  </ion-toolbar>
+  </ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <p> Open Ticket # {{data.id}} </p>   
+    </ion-row>
+    <ion-row>
+     <ion-col>
+          <h6>From :</h6>
+  
+      <p>{{data.created_by_alias}}</p>
+  
+    </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+      <h6>Date :</h6>
+      <p>{{data.created | date:'dd/MM/yyyy hh:mm'}}</p>
+    </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+      <h6>Branch :</h6>
+      <p>{{data.created_by_alias}}</p>
+    </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+      <h6>Description of the problem :</h6>
+      <p>{{data.created_by_alias}}</p>
+    </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+      <h6>Image :</h6>
+       <div *ngIf="data.images" >
+         <img src="{{data.images}}">
+       </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

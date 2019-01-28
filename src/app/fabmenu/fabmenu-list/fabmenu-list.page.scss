@@ -1,0 +1,30 @@
+::-webkit-scrollbar,
+    *::-webkit-scrollbar {
+      display: none;
+    }
+    .box{
+      
+        margin-left: 10px;
+        margin-right: 10px;
+        background: #FFFFFF;
+        border: 2px solid #000000;
+        box-sizing: border-box;
+    }
+    .itemtt{
+        margin-top: 15px;
+        margin-right: 15px;
+        margin-bottom: 15px !important;
+        margin-left: 15px;
+        font-family: 'Varela Round';
+        font-style: normal;
+        font-weight: normal;
+        line-height: normal;
+        font-size: 17px;
+        color: #000000;
+    }
+    .txt{
+        font-family: 'Varela Round';
+        color: #000000;
+        font-style: normal;
+        font-weight: normal;
+      }

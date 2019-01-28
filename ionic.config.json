@@ -1,5 +1,7 @@
 {
   "name": "Depoint",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

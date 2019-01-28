@@ -1,0 +1,17 @@
+<ion-header >
+<ion-toolbar>
+ <ion-back-button>
+   
+ </ion-back-button>
+</ion-toolbar>
+</ion-header>
+
+
+<ion-content padding>
+  <p>{{data.title}}</p>
+  <div *ngIf="htmlCode" >
+    <div [innerHTML]="htmlCode"></div>
+  </div>
+
+
+</ion-content>

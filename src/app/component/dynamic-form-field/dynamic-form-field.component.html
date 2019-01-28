@@ -1,0 +1,77 @@
+
+
+<div [formGroup]="form">
+    <label class="qst" [attr.for]="question.id" *ngIf="question.qtype != '10'"  >{{question.question}}</label>
+       
+    <div [ngSwitch]="question.qtype">
+      <div *ngSwitchCase="'1'">
+              <div *ngIf="question.multichoice == 0" >
+                          <input class="ipbox txt"  
+                          [formControlName]="question.id"
+                          [id]="question.id" type="text">
+              </div>
+              </div>
+       <div *ngSwitchCase="'1'">
+              <div  *ngIf="question.multichoice == 1" >       
+                          <textarea  class="ipbox txt"
+                                  [formControlName]="question.id"
+                                  [id]="question.id" >
+                          </textarea>
+              </div>
+      </div>    
+      <div *ngSwitchCase="'2'" >
+      <div class="radio txt" radioGroup *ngFor="let item of question.options" >
+                          <input  formControlName="{{question.id}}" [value]="item.id" type="radio">
+                             &nbsp;{{item.qoption}}
+       </div>
+      </div>  
+       <div *ngSwitchCase="'3'">
+        <input class="ipbox txt" #files type="file" (change)="selectFile($event,question.id)"
+       
+         [id]="question.id" placeholder="Choose File" multiple>
+    
+      </div>
+   <input class="ipbox txt" *ngSwitchCase="'4'" 
+              [formControlName]="question.id"
+              [id]="question.id" type="number">
+                  <!-- Date Picker-->
+      <input type="date" displayFormat="MM/DD/YYYY"  class="ipbox txt" *ngSwitchCase="'5'" 
+              [formControlName]="question.id"
+              [id]="question.id" type="date">
+       
+      <div *ngSwitchCase="'6'">             
+                          <select class="ipbox txt"  [formControlName]="question.id" [id]="question.id">
+                               <option *ngFor="let item of question.options" [value]="item.id">
+                                                      {{item.qoption}}
+                               </option>
+                          </select>        
+       </div>
+       <div *ngSwitchCase="'7'" >
+                  <input type="time" class="ipbox txt"   [formControlName]="question.id"
+                  [id]="question.id" >
+       </div>
+   <div *ngSwitchCase="'8'" >
+                <ion-button expand="full" (click)="openModal(question)">Signature Pad</ion-button>
+               <div><input type="image" [src]="signatureImg" [id]="question.id" *ngIf="signatureImg" /></div>
+     </div>
+ 
+       <input class="ipbox txt" *ngSwitchCase="'9'" 
+              [formControlName]="question.id"
+              [id]="question.id" [type]="question.qtype">      
+               <!-- Result Data-->
+       <div class="paragrph txt" *ngSwitchCase="'10'"           
+              [innerHTML]="question.resultdata[0]">   
+           </div>   
+       <ion-toggle *ngSwitchCase="'11'" text-center  [formControlName]="question.id" (ionChange)="toggleYes($event)"
+       [id]="question.id" >
+      </ion-toggle>       
+
+  
+    </div> 
+
+  </div>
+
+  <div *ngFor="let item of lastImage" >
+  <img src="{{item}}" style="width: 300px;" [hidden]="lastImage === null">
+  </div>
+  

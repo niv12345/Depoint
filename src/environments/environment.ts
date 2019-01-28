@@ -3,7 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+ // BASE_URL:'https://devcastro.depoint.app'
+  BASE_URL:localStorage.getItem('BASE_URL')
+  // BASE_URL:'https://castro.depoint.app'
+//  BASE_URL:'https://proto.depoint.co' 
+  
 };
 
 /*

@@ -1,0 +1,156 @@
+<ion-header>
+  <app-header></app-header>
+  <ion-toolbar  color="light" >
+      <ion-buttons slot="secondary" >
+       
+        <ion-button *ngIf="showic" (click)="onClkFunnel()" >
+          <ion-icon slot="icon-only" name="ios-funnel" ></ion-icon>
+        </ion-button>
+        <ion-button *ngIf="!showic" (click)="onClkClose()" >
+            <ion-icon slot="icon-only" name="close" ></ion-icon>
+          </ion-button>
+      </ion-buttons>
+      <ion-title class="txt">{{title}}</ion-title>
+      <ion-back-button slot="start" >
+        </ion-back-button>
+    </ion-toolbar>
+  <!-- <ion-toolbar>
+      <ion-back-button slot="start" text="{{title}}">
+      </ion-back-button>
+  
+    <ion-buttons slot="end">
+
+    
+      <ion-buttons slot="end" *ngIf="showFilter" >
+          <button *ngIf="showic"  ion-button icon-only color="dark" (click)="onClkFunnel()">
+            <ion-icon name="ios-funnel"></ion-icon>
+          </button>
+       
+            <button *ngIf="!showic"  ion-button icon-only color="dark" (click)="onClkClose()" >
+              <img src="assets/imgs/close.svg" width="18">
+            </button>
+          </ion-buttons>
+    </ion-buttons>
+  </ion-toolbar> -->
+</ion-header>
+  <!-- <ion-nav no-lines  style="background-color: #f8f8f8; !important">
+    <ion-toolbar no-lines  style="background-color: #f8f8f8; !important">
+    <ion-title>{{title}}</ion-title>
+   
+    <ion-buttons end *ngIf="showFilter" >
+      <button *ngIf="showic"  ion-button icon-only color="dark" (click)="onClkFunnel()">
+        <ion-icon name="ios-funnel"></ion-icon>
+      </button>
+   
+        <button *ngIf="!showic"  ion-button icon-only color="dark" (click)="onClkClose()" >
+          <img src="assets/imgs/close.svg" width="18">
+        </button>
+      </ion-buttons>
+  </ion-toolbar>
+ 
+
+  </ion-nav> -->
+  <ion-toolbar color="light" *ngIf="!showic">
+      <div >
+          <ion-grid (ionChange)="searchItem($event)">
+            
+              <ion-row>
+               
+                <div>
+                    <ion-label class="txt">Read/Not Read</ion-label>
+                </div>
+                </ion-row>
+                <ion-row>
+                   
+                <div  style="width: 100% !important;">
+                 <ion-select class="ipbox txt" placeholder="Select"   name="readunread" >
+                    <ion-select-option value="all" >All</ion-select-option>
+                   <ion-select-option value="read" >Read</ion-select-option>
+                   <ion-select-option value="notread" >Not Read</ion-select-option>
+                 </ion-select>
+                </div>
+              
+              </ion-row>
+              <ion-row>
+                 <ion-col size="6">
+                    <div>
+                        <ion-label class="txt">From Date</ion-label>
+                        <input class="ipbox" type="date" value="fromdate" name="fromdate">
+                    </div>
+                 </ion-col>
+            
+                 <ion-col size="6">
+                    <div>
+                        <ion-label class="txt">To Date</ion-label>
+                        <input class="ipbox" type="date" value="todate" name="todate">
+                    </div>
+                 </ion-col>
+               
+              </ion-row>
+           
+            </ion-grid>
+          </div>
+
+  </ion-toolbar> 
+ 
+
+
+
+
+<ion-content >
+
+  <div *ngFor="let item of itemArray" >
+        <ion-card>
+                <ion-item (click)="onClickCard(item)" lines="none">
+                        <ion-thumbnail slot="start" *ngIf="item.fields.itemimg && item.fields.itemimg.fielddata.images[0] != undefined" >
+                                <img src="{{item.fields.itemimg.fielddata.images[0].src}}">
+                              </ion-thumbnail>
+                              <ion-card-title class="txt">{{item.title}}</ion-card-title>
+              
+                  <ion-icon name="md-more" slot="end" (click)="presentPopover($event,item)"></ion-icon>
+                  
+                </ion-item>
+              
+                <ion-card-content>
+                     
+                  <ion-card-subtitle class="txt">{{item.author}}</ion-card-subtitle>
+                        <ion-row>
+                                <ion-col size="8">            
+                                   
+                                    <div class="txt">{{title}} | {{item.created | date:'dd/MM/yyyy'}}</div>
+                                 
+                                </ion-col>
+                             <ion-col size="1">
+                    
+                             </ion-col>
+                            
+                                <ion-col size="3" item-end *ngIf="item && item.hasread != undefined && item.hasread==1" >
+                                    <img src="assets/imgs/done.png" class="done">
+                                </ion-col>
+                                <ion-col size="3" item-end *ngIf="item && item.hasread != undefined && item.hasread==0">
+                                    <img src="assets/imgs/not_done.png" class="done">
+                                </ion-col>
+                                
+                              </ion-row>
+                </ion-card-content>
+              </ion-card>
+
+    
+       
+   
+  </div>
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content
+          loadingSpinner="bubbles"
+          loadingText="Loading more data...">
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+ 
+<div class="fab">
+    <app-footer ></app-footer>
+</div>
+
+    <!-- <ion-fab  vertical="bottom" horizontal="start" slot="fixed" (click)="onClkFab()">     
+        <img src="assets/imgs/fab.svg" class="fab" ion-fab>
+      </ion-fab> -->
+</ion-content>
