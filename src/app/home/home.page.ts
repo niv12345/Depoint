@@ -4,6 +4,8 @@ import { NavController, LoadingController, Platform } from '@ionic/angular';
 import { ApiService } from '../service/api.service';
 import { environment } from 'src/environments/environment';
 import { DataService } from '../service/data.service';
+import { FingerprintAIO, FingerprintOptions } from '@ionic-native/fingerprint-aio/ngx'
+import { AndroidFingerprintAuth } from '@ionic-native/android-fingerprint-auth/ngx';
 
 @Component({
   selector: 'app-home',
@@ -30,10 +32,48 @@ export class HomePage implements OnInit,OnChanges{
               private router:Router,
               private route:ActivatedRoute,
               private dataService:DataService,
-              private plt:Platform
+              private plt:Platform,
+              private faio:FingerprintAIO,
+              private androidFingerprintAuth:AndroidFingerprintAuth
              ) {
+              this.androidFingerprintAuth.isAvailable()
+              .then((result)=> {
+                if(result.isAvailable){
+                  // it is available
+                //   this.faio.show({
+                //     clientId: 'Fingerprint-Demo',
+                //     clientSecret: 'password', //Only necessary for Android
+                //     disableBackup:true,  //Only for Android(optional)
+                //     localizedFallbackTitle: 'Use Pin', //Only for iOS
+                //     localizedReason: 'Please authenticate', //Only for iOS,
+                  
+                // })
+                // .then((result: any) => console.log(result))
+                // .catch((error: any) => console.log(error));
+            
+                  this.androidFingerprintAuth.encrypt({ clientId: 'depoint', username: 'myUsername', password: 'myPassword' })
+                    .then(result => {
+                       if (result.withFingerprint) {
+                           console.log('Successfully encrypted credentials.');
+                           console.log('Encrypted credentials: ' + result.token);
+                      //  } else if (result.withBackup) {
+                         
+                      //    console.log('Successfully authenticated with backup password!');
+                       } else console.log('Didn\'t authenticate!');
+                    })
+                    .catch(error => {
+                       if (error === this.androidFingerprintAuth.ERRORS.FINGERPRINT_CANCELLED) {
+                         console.log('Fingerprint authentication cancelled');
+                       } else console.error(error)
+                    });
+            
+                } else {
+                  // fingerprint auth isn't available
+                }
+              })
+              .catch(error => console.error(error));
                
-        
+           
               this.showLoading();
    
   }
@@ -56,7 +96,7 @@ export class HomePage implements OnInit,OnChanges{
     this.baseUrl = localStorage.getItem('BASE_URL');
    // this.userData = JSON.parse(udata);
   
-   console.log('UD :',this.userData);
+
    this.userProfile = this.userData.data.profile; 
    this.frontPage = this.userData.data.frontpage;   
    this.profilePic = this.baseUrl + '/' +this.userProfile.avatar;
@@ -86,7 +126,7 @@ export class HomePage implements OnInit,OnChanges{
   openLink(data){
     
    let data1 = JSON.stringify(data);
-   this.router.navigate(['/frontView',{viewData:data1}],{skipLocationChange: true});
+   this.router.navigate(['frontView',{viewData:data1}],{skipLocationChange: true});
   }
 
 

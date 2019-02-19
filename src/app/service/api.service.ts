@@ -14,17 +14,21 @@ export class ApiService {
    auth: string;
    BASE_URL:string;
   constructor(public http: HttpClient){
-   
+    this.BASE_URL = localStorage.getItem('BASE_URL');
+   console.log("BU :",localStorage.getItem('BASE_URL'));
     
   }
   ngOnInit(): void {
+    this.BASE_URL = localStorage.getItem('BASE_URL');
+    console.log('URL 1 :',this.BASE_URL);
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     this.auth = localStorage.getItem('AUTH_KEY');
   }
   GetLang(url): Observable<any>{
-    this.BASE_URL = url;
-   
+   // this.BASE_URL = url;
+   // localStorage.setItem('BASE_URL',url);
+    this.BASE_URL = localStorage.getItem('BASE_URL');
     return this.http.get(url + '/ws/v1/lang').pipe();
       
   }
@@ -42,7 +46,7 @@ export class ApiService {
     
   }
   GetFabMenu(): Observable<any>{
-  
+  console.log('URL :',this.BASE_URL);
     
   return this.http.get(this.BASE_URL + '/ws/v1/menus?key='+localStorage.getItem('AUTH_KEY'));
   }
@@ -52,6 +56,7 @@ export class ApiService {
   }
   PostQuestion(qsttitle,data,type_id): Observable<any>{
     let body = new FormData();
+    console.log('AAA :',qsttitle);
     body.append(qsttitle,JSON.stringify(data));  
  
     
@@ -66,7 +71,7 @@ export class ApiService {
      let typeid = qst.typeid;
      let questionid = qst.questionid;
      let catid = qst.catid;
-   //  console.log('MY CAT :',catid);
+    console.log('MY CAT :',JSON.stringify(data));
      body.append('item_id',JSON.stringify(itemid));
      body.append('type_id',JSON.stringify(typeid));
      body.append('questionnaire_id',JSON.stringify(questionid));
@@ -74,7 +79,7 @@ export class ApiService {
      body.append('catid',JSON.stringify(catid));
    
     // let key = Object.keys(data);
-  //  console.log('Q :',JSON.stringify(body));
+   console.log('POST QUIZ :',JSON.stringify(body));
     return this.http.post(this.BASE_URL + '/ws/v1/items/items?key=' + localStorage.getItem('AUTH_KEY'),body);
     // let tArray = [];
     // key.forEach(element => {

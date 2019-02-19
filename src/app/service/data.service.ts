@@ -10,7 +10,7 @@ export class DataService {
   // = new BehaviorSubject<string[]>([]);
 
   constructor() { 
-    console.log('DataService :',this.userData);
+ 
   }
    
   getData(){

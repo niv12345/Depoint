@@ -6,6 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { Router } from '@angular/router';
 import { AuthenticationService } from './service/authentication.service';
+import { OneSignal } from '@ionic-native/onesignal/ngx';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +17,7 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-  
+    private oneSignal:OneSignal,
     private router: Router,
     private alertController:AlertController,
     private menu:MenuController,
@@ -38,17 +39,17 @@ export class AppComponent {
       })
 //     
 
-// this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
+this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
 
-// this.oneSignal.handleNotificationReceived().subscribe(() => {
-//  // do something when notification is received
-// });
+this.oneSignal.handleNotificationReceived().subscribe(() => {
+ // do something when notification is received
+});
 
-// this.oneSignal.handleNotificationOpened().subscribe(() => {
-//   // do something when a notification is opened
-// });
+this.oneSignal.handleNotificationOpened().subscribe(() => {
+  // do something when a notification is opened
+});
 
-// this.oneSignal.endInit();
+this.oneSignal.endInit();
     });
   }
   openPage(page) {

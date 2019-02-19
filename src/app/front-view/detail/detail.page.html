@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
       <ion-buttons slot="start">
-          <ion-back-button ></ion-back-button>
+          <ion-back-button defaultHref="home"></ion-back-button>
         </ion-buttons>
       <ion-title>
         {{title}}
@@ -9,6 +9,66 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-{{author}}
+<ion-content >
+    <div *ngIf="data.fields.itemimg && data.fields.itemimg.fielddata.images.length >0">
+    <ion-slides [options]="sliderConfig">
+        <ion-slide *ngFor="let item of data.fields.itemimg.fielddata.images">
+            <img src="{{item.src}}" width="100%" height="300" >
+            <!-- <ion-card>
+              <ion-card-header>
+                <ion-card-title>
+                
+                </ion-card-title>
+                <ion-card-content>
+                    <img src="{{item.src}}" width="100%" height="300">
+                </ion-card-content>
+              </ion-card-header>
+            </ion-card> -->
+         
+        </ion-slide>
+      </ion-slides>
+      <!-- <ion-item lines="none" class="arrow" >  
+          <ion-button icon-only clear (click)="preSlides()" [disabled]="slides.isBeginning()">   <ion-icon  ios="ios-arrow-back"  md="md-arrow-back"></ion-icon></ion-button>
+          <ion-button  icon-only clear [disabled]="slides.isEnd()" (click)="nextSlides()" item-end>  <ion-icon ios="ios-arrow-forward" md="md-arrow-forward"></ion-icon></ion-button>
+          </ion-item> -->
+    </div>
+<!-- {{author}} -->
+<!-- <div *ngIf="data.fields.itemimg && data.fields.itemimg.fielddata.images.length >0">
+ 
+  <ion-slides #slides>   
+      <ion-slide *ngFor="let item of data.fields.itemimg.fielddata.images">
+          <img src="{{item.src}}" width="100%" height="300">
+        </ion-slide>
+</ion-slides>
+<ion-item lines="none" class="arrow" >  
+<ion-button icon-only clear (click)="preSlides()" [disabled]="slides.isBeginning()">   <ion-icon  ios="ios-arrow-back"  md="md-arrow-back"></ion-icon></ion-button>
+<ion-button  icon-only clear [disabled]="slides.isEnd()" (click)="nextSlides()" item-end>  <ion-icon ios="ios-arrow-forward" md="md-arrow-forward"></ion-icon></ion-button>
+</ion-item>
+
+</div> -->
+<ion-item >
+<div class="hdr">{{data.title}}</div>
+</ion-item>
+
+<ion-item > 
+<ion-row>
+  <ion-col size="4" class="cuname txt">
+      {{data.cuname}}
+  </ion-col>
+ 
+  <ion-col size="8" class="crtdate txt">
+      {{data.created | date:'EEEE dd MMMM yyyy HH:mm'}}
+  </ion-col>
+</ion-row>
+ <!-- <div class="cuname txt" slot="start">{{data.cuname}}</div>          
+ <div class="crtdate txt" ><div  slot="end">{{data.created | date:'EEEE dd MMMM yyyy HH:mm'}}</div></div> -->
+</ion-item>
+
+<div>
+  <p class="desc txt">{{data.introtext}}</p>
+</div>
+<div *ngIf="data.fields && data.fields.maincontent"  [innerHTML]="data.fields.maincontent.fielddata">
+
+</div>
+
 </ion-content>

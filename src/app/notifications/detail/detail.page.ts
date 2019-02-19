@@ -21,7 +21,9 @@ export class DetailPage implements OnInit {
     });
     this.apiService.GetActionList(this.data.applink).subscribe(res =>{
       this.itemData = res;
+      if(this.itemData.data.fields && this.itemData.data.fields.maincontent ){
       this.htmlCode = this.itemData.data.fields.maincontent.fielddata;
+      }
   //    console.log('ITYEM :',this.itemData.data.fields.maincontent.fielddata);
      // console.log('ITYEM :',this.itemData.fields.maincontent);
     //  console.log('ionViewDidLoad ActionListPage',res);

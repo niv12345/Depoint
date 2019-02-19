@@ -11,10 +11,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AuthGuardService } from './service/auth-guard.service';
 import { IonicStorageModule } from '@ionic/storage';
 import { MaterialModule } from './material/material.module';
-
+import { FingerprintAIO, FingerprintOptions } from '@ionic-native/fingerprint-aio/ngx'
 import { FabmenuListPage } from './fabmenu/fabmenu-list/fabmenu-list.page';
-
-
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+import { AndroidFingerprintAuth } from '@ionic-native/android-fingerprint-auth/ngx';
+import { OneSignal } from '@ionic-native/onesignal/ngx';
+import { Base64 } from '@ionic-native/base64/ngx';
 
 @NgModule({
   declarations: [AppComponent,FabmenuListPage],
@@ -26,15 +29,21 @@ import { FabmenuListPage } from './fabmenu/fabmenu-list/fabmenu-list.page';
            
             MaterialModule,
             IonicModule.forRoot(), AppRoutingModule,
-            IonicStorageModule.forRoot()
+            IonicStorageModule.forRoot(),
+            ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
            
           ],
   providers: [
     StatusBar,
     SplashScreen,
+    AndroidFingerprintAuth,
+    OneSignal,
+    FingerprintAIO,
+    Base64,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     AuthGuardService
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
+100929608493

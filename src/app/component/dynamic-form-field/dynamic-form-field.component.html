@@ -6,9 +6,9 @@
     <div [ngSwitch]="question.qtype">
       <div *ngSwitchCase="'1'">
               <div *ngIf="question.multichoice == 0" >
-                          <input class="ipbox txt"  
+                          <ion-input class="ipbox txt"  
                           [formControlName]="question.id"
-                          [id]="question.id" type="text">
+                          [id]="question.id" type="text"></ion-input>
               </div>
               </div>
        <div *ngSwitchCase="'1'">
@@ -20,24 +20,31 @@
               </div>
       </div>    
       <div *ngSwitchCase="'2'" >
-      <div class="radio txt" radioGroup *ngFor="let item of question.options" >
-                          <input  formControlName="{{question.id}}" [value]="item.id" type="radio">
+                <ion-radio-group>  
+           
+                                <ion-item lines="none" *ngFor="let item of question.options; let i = index;" [attr.for]="item" class="txt">
+                                   <ion-radio slot="start" [value]="item" (ionSelect)="changeValue($event,question.id,item.id)"  ></ion-radio>
+                                      {{item.qoption | titlecase}}
+                                   </ion-item>
+                               </ion-radio-group>
+      <!-- <div class="radio txt" radioGroup *ngFor="let item of question.options" >
+                          <ion-input  formControlName="{{question.id}}" [value]="item.id" type="radio">
                              &nbsp;{{item.qoption}}
-       </div>
+       </div> -->
       </div>  
        <div *ngSwitchCase="'3'">
-        <input class="ipbox txt" #files type="file" (change)="selectFile($event,question.id)"
+        <ion-input class="ipbox txt" #files type="file" (change)="selectFile($event,question.id)"
        
-         [id]="question.id" placeholder="Choose File" multiple>
+         [id]="question.id" placeholder="Choose File" multiple></ion-input>
     
       </div>
-   <input class="ipbox txt" *ngSwitchCase="'4'" 
+   <ion-input class="ipbox txt" *ngSwitchCase="'4'" 
               [formControlName]="question.id"
-              [id]="question.id" type="number">
+              [id]="question.id" type="number"></ion-input>
                   <!-- Date Picker-->
-      <input type="date" displayFormat="MM/DD/YYYY"  class="ipbox txt" *ngSwitchCase="'5'" 
+      <ion-input type="date" displayFormat="MM/DD/YYYY"  class="ipbox txt" *ngSwitchCase="'5'" 
               [formControlName]="question.id"
-              [id]="question.id" type="date">
+              [id]="question.id" type="date"></ion-input>
        
       <div *ngSwitchCase="'6'">             
                           <select class="ipbox txt"  [formControlName]="question.id" [id]="question.id">
@@ -47,17 +54,18 @@
                           </select>        
        </div>
        <div *ngSwitchCase="'7'" >
-                  <input type="time" class="ipbox txt"   [formControlName]="question.id"
-                  [id]="question.id" >
+                  <ion-input type="time" class="ipbox txt"   [formControlName]="question.id"
+                  [id]="question.id" ></ion-input>
        </div>
    <div *ngSwitchCase="'8'" >
                 <ion-button expand="full" (click)="openModal(question)">Signature Pad</ion-button>
-               <div><input type="image" [src]="signatureImg" [id]="question.id" *ngIf="signatureImg" /></div>
-     </div>
+               <!-- <div><ion-input type="image"  [id]="question.id" *ngIf="signatureImg" > </ion-input></div> -->
+  
+        </div>
  
-       <input class="ipbox txt" *ngSwitchCase="'9'" 
+       <ion-input class="ipbox txt" *ngSwitchCase="'9'" 
               [formControlName]="question.id"
-              [id]="question.id" [type]="question.qtype">      
+              [id]="question.id" [type]="question.qtype"> </ion-input>    
                <!-- Result Data-->
        <div class="paragrph txt" *ngSwitchCase="'10'"           
               [innerHTML]="question.resultdata[0]">   

@@ -20,6 +20,7 @@ export class QuestionFormComponent implements OnInit {
   qstArray = [];
   index:number = 0;
   data = [];
+  
   delFile = false;
   showDone = false;
   showDel = false;
@@ -33,10 +34,14 @@ export class QuestionFormComponent implements OnInit {
                 this.qstArray.push(this.question[0]);   
                
                 this.form = this.qc.toFormGroup(this.question);
+          
               }
 
   ngOnInit() {
     this.qstArray.push(this.question[0]);  
+    console.log(this.qstArray);
+    this.form = this.qc.toFormGroup(this.question);
+
   }
   onClkNext(e){ 
     this.disableNxt = true;
@@ -60,6 +65,7 @@ export class QuestionFormComponent implements OnInit {
   saveQuestionnaire(){
    
     this.data = this.form.value;
+
     this.apiService.PostQuiz(this.ids,this.data).subscribe(res =>{
         this.presentToast('Questionairy saved successfully');    
         this.navCtrl.navigateRoot('/home');

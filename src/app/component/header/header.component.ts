@@ -40,7 +40,7 @@ export class HeaderComponent implements OnInit, OnChanges {
              ) {
               this.logo = localStorage.getItem('BASE_URL')+localStorage.getItem('LOGO');
                 this.userData = JSON.parse(localStorage.getItem('USER'));
-    console.log('USR :',this.userData);
+ 
  
   }
   ngOnInit(){   
@@ -64,13 +64,7 @@ export class HeaderComponent implements OnInit, OnChanges {
     this.menu.swipeEnable(false);
     this.menu.open('first');
   }
-//   showLoading() {
-//      this.loading = this.loadingCtrl.create({
-//      content: 'Please wait...',
-//      dismissOnPageChange: true
-//    });
-//    this.loading.present();
-//  }
+
 ionViewWillEnter() {
   this.menu.swipeEnable(false);
   this.menu.enable(false);

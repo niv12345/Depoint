@@ -98,12 +98,13 @@ export class FrontViewPage implements OnInit {
     }
    
      this.itemArray = [];
-   
+   this.showLoading();
      this.apiService.GetMenuDataSearch(this.vdata.link,this.str).subscribe(res =>{
        if(res){
       this.serachData = res;    
       if(Object.keys(this.serachData.data).length>0){   
       for(let i=0;i<this.serachData.data.items.length;i++){
+        this.loadingCtrl.dismiss();
         this.itemArray.push(this.serachData.data.items[i]);
       }
      }
@@ -191,7 +192,7 @@ onClickCard(item){
 }
 
 getItems(ev: any) {
-       
+     this.showLoading();  
   const val = ev.target.value;
   // if(val.length>4){
     this.apiService.SearchItem(val).subscribe(res =>{

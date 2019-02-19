@@ -2,10 +2,12 @@
   <ion-grid *ngIf="showList" >
   <ion-row>
     <ion-col size="10">
+       
     <ion-list>
         <ion-list-header>
             <ion-label class="txt">Choose Customer</ion-label>
           </ion-list-header>
+    
         <ion-radio-group>  
            
            <ion-item *ngFor="let item of cliName; index as i" class="txt" >
@@ -16,14 +18,14 @@
     
     </ion-list>
    
-
+ 
   </ion-col>
  
 
   </ion-row>
   <ion-row>
     <ion-col size="12">
-        <ion-button expand="full"   (click)="onClkItem()">SET</ion-button>
+        <ion-button expand="full" color="dark" [disabled]="disableBtn"  (click)="onClkItem()">SET</ion-button>
     </ion-col>
     
   </ion-row>
@@ -38,7 +40,14 @@
       <ion-col size="12"></ion-col>
   </ion-row>
 
-  <ion-row>
+  <ion-row *ngIf="spin" >
+      <ion-col>
+          <ion-spinner name="crescent"></ion-spinner>
+      </ion-col>
+  </ion-row>
+  <ion-row *ngIf="!spin">
+
+   
     <ion-col >
         <img  [src]="logo" width=240>  
     </ion-col>
@@ -53,12 +62,12 @@
               <div class="usr">{{titleUsrname}}</div>
            </div>
           
-              <div class="inputname">  <ion-input type="text" id="username" placeholder=" Enter user name here.." formControlName="username"  ></ion-input></div>
+              <div class="inputname">  <ion-input type="text" clear-input id="username" placeholder=" Enter user name here.." formControlName="username"  ></ion-input></div>
            
            <div>
               <div class="passwd">{{titlePwd}}</div>
             </div>
-              <div class="inputpwd"><ion-input type="password" id="password"  placeholder=" Enter password here.." formControlName="password"  ></ion-input></div>  
+              <div class="inputpwd"><ion-input clear-input type="password" id="password"  placeholder=" Enter password here.." formControlName="password"  ></ion-input></div>  
           
     
         <ion-button (click)="authentication()" class="btn"  [disabled]="!ngForm.valid" color="dark">LOGIN</ion-button>

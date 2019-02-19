@@ -32,6 +32,7 @@ export class AwsService {
     };
  
     bucket.upload(params, function (err, data) {
+      
       if (err) {
       //alert('There was an error uploading your file: '+ err);
         return false;
@@ -79,7 +80,7 @@ export class AwsService {
     })
   }
   uploadCamera(imgBody,name,type,aws){
-  
+    console.log('DD :',imgBody);
     const bucket = new S3(
       {
         accessKeyId: aws.aws_key_id,

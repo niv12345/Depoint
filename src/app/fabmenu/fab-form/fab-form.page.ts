@@ -23,6 +23,7 @@ export class FabFormPage implements OnInit {
       this.itemtitle = JSON.parse(res.itemtitle);
       this.typeid = JSON.parse(res.typeid);
       this.key = JSON.parse(res.key);
+      console.log('RESS :',this.formdata );
     });
    
   }

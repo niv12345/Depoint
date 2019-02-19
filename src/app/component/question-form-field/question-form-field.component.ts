@@ -1,3 +1,4 @@
+import { QuestionControlService } from './../../service/question-control.service';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { QuestionBase } from 'src/app/modal/question-base';
 import { FormGroup } from '@angular/forms';
@@ -22,7 +23,7 @@ export class QuestionFormFieldComponent implements OnInit {
   photoName;
   text: string;
   selectedFiles: FileList;
-  @Input() question: QuestionBase<any>;
+  @Input() question: QuestionBase<any>[]=[];
   @Input() form: FormGroup;
   @Input() deleteFile: boolean;
   
@@ -37,17 +38,22 @@ export class QuestionFormFieldComponent implements OnInit {
   imageURL;
   uploadImg;
   aws;
+  qstArray = [];
   showPreview = true;
   required:boolean;
   constructor(private awsProvider:AwsService,
               private camera:Camera,
-              private modalCtrl:ModalController) { 
-               
+              private modalCtrl:ModalController,
+              private qc:QuestionControlService) { 
+              
               }
 
   ngOnInit() {
-  
+    // this.qstArray.push(this.question[0]);   
+    // this.form = this.qc.toFormGroup(this.question);
+ 
   }
+  
   
   public selectdocFile(e,qid) {  
     this.uploadImg = true;
@@ -105,6 +111,7 @@ export class QuestionFormFieldComponent implements OnInit {
       componentProps: { question: this.question}
     });
     modal.onDidDismiss().then((data:any) => {
+    
       
       this.signatureImg = data.signature;
       let k = data['data'].qid;
@@ -185,20 +192,22 @@ clkCameraDelBtn(e){
   
   this.imageURL = '';
   let fileName =e;
- 
-  this.awsProvider.deletePhoto(fileName,this.question.aws);
+
+  
+//  this.awsProvider.deletePhoto(fileName,this.question.aws);
 
   }
    public clkDelBtn(e){
    
     this.showInput = true;
-    this.awsProvider.deleteFile(e,this.question.aws);
+    //this.awsProvider.deleteFile(e,this.question.aws);
    
     // this.sl = true;
 //this.showInput = false;
      // this.cnt = this.cnt + 1;
    //   this.showInput = e;
-    console.log('DELETE BTN 3:',e);
+ 
+   
    // this.getFile ='';
    // this.showdeleteEvent.emit(false);
    
@@ -210,15 +219,17 @@ upload(f) {
   const files = f;
   
   for(let i=0;i<files.length;i++){ 
-  this.awsProvider.uploadfile(files.item(i),this.question.aws);
+ //this.awsProvider.uploadfile(files.item(i),this.question.aws);
   }
   
 }
 
 changeValue(e,qid,aid){
 
- this.arr.push(aid);
- this.form.get(qid).setValue(this.arr);
+  
+// this.arr.push(aid);
+// this.form.patchValue({qid:this.arr});
+this.form.get(qid).setValue(aid);
 }
 
 }

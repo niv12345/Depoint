@@ -6,10 +6,12 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { DataService } from '../service/data.service';
 import { AuthenticationService } from '../service/authentication.service';
 import { Router } from '@angular/router';
+import { OneSignal } from '@ionic-native/onesignal/ngx';
 var deviceid;
 export interface reg{
   username:string;
   password:string;
+  
 }
 @Component({
   selector: 'app-login',
@@ -18,7 +20,8 @@ export interface reg{
 })
 export class LoginComponent implements OnInit {
   ngForm:FormGroup;
-
+  rform:FormGroup;
+  spin = true;
   ngOnInit() {
    // this.presentAlertRadio();
   }
@@ -31,6 +34,7 @@ export class LoginComponent implements OnInit {
  baseURL:string;
  showList:boolean = true;
  logo:string;
+ disableBtn = true;
   registerCredentials = {username:'',password:''};
   constructor(public navCtrl: NavController,             
               private apiService:ApiService,
@@ -40,7 +44,7 @@ export class LoginComponent implements OnInit {
               private fb:FormBuilder,
               private menuCtrl:MenuController,
               private dataService:DataService,
-        
+              private oneSignal:OneSignal,
               private authService:AuthenticationService,
               private router:Router,
               private alertController:AlertController) {
@@ -67,6 +71,10 @@ export class LoginComponent implements OnInit {
             username:new FormControl('',Validators.required),
             password:new FormControl('',Validators.required)
           });
+          this.rform = this.fb.group({
+            selectedItem:new FormControl('',Validators.required)
+           
+          });
         //  this.presentAlertRadio();
           this.registerCredentials.username ='';
 
@@ -78,27 +86,28 @@ export class LoginComponent implements OnInit {
     this.apiService.GetLang(url).subscribe(res => {
       this.lang = res.data; 
       this.logo = localStorage.getItem('BASE_URL')+res.data.uisettings.login_logo;
+      this.spin = false;
      // console.log('LA :',this.lang);
       localStorage.setItem('LOGO',res.data.uisettings.logo);
     if(this.platform.is('android')){
-      // this.oneSignal.startInit(this.lang.onesignal_id, this.lang.firebase_key);
-      // this.oneSignal.getIds().then(res =>{
-      // deviceid = res;       
-      //   localStorage.setItem('PL',JSON.stringify(res));
-      // });
+      this.oneSignal.startInit(this.lang.onesignal_id, this.lang.firebase_key);
+      this.oneSignal.getIds().then(res =>{
+      deviceid = res;       
+        localStorage.setItem('PL',JSON.stringify(res));
+      });
   
-//   this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
+  this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
   
-//   this.oneSignal.handleNotificationReceived().subscribe(() => {
-//   // do something when notification is received
-//   });
+  this.oneSignal.handleNotificationReceived().subscribe(() => {
+  // do something when notification is received
+  });
 
-// this.oneSignal.handleNotificationOpened().subscribe((res) => {
-// // alert(JSON.stringify(res));
-// // do something when a notification is opened
-// });
+this.oneSignal.handleNotificationOpened().subscribe((res) => {
+// alert(JSON.stringify(res));
+// do something when a notification is opened
+});
 
-// this.oneSignal.endInit();
+this.oneSignal.endInit();
 }
 
 //  console.log('LANG ID :',this.lang.onesignal_id);
@@ -167,13 +176,15 @@ export class LoginComponent implements OnInit {
     toast.present();
   }
   onSelectItem(e,index){
-    console.log(e);
+    this.disableBtn = false;
+   
     let cUrl = this.cliList[index];
     this.baseURL = 'https://'+cUrl;
     localStorage.removeItem('BASE_URL');
-    console.log('ITEM :', index);
+  
   }
   onClkItem(){
+    this.disableBtn = true;
     this.showList = !this.showList;
     this.showLoading();
     localStorage.setItem('BASE_URL',this.baseURL);

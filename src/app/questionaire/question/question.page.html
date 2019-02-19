@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-back-button></ion-back-button>
+    <ion-back-button defaultHref="frontView"></ion-back-button>
   </ion-toolbar>
 </ion-header>
 
@@ -24,9 +24,9 @@
     <div *ngIf="showContent">
         <h2 class="txt">Professional knowledge test</h2>
         <hr>
-        <ion-item  no-lines>        
+        <ion-item  >        
             <p *ngIf="cuname"  class="cuname txt">{{cuname}}</p>          
-            <div  *ngIf="cdate" class="crtdate txt" item-end >{{cdate | date:'EEEE dd MMMM yyyy HH:mm'}}</div>
+            <div  *ngIf="cdate" class="crtdate txt" slot="end" >{{cdate | date:'EEEE dd MMMM yyyy HH:mm'}}</div>
       </ion-item>
         <hr>
         <div text-center>

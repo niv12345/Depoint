@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HomePage } from './home.page';
+import { FingerprintAIO } from '@ionic-native/fingerprint-aio';
 
 
 
@@ -15,6 +16,7 @@ import { HomePage } from './home.page';
   imports: [
     CommonModule,
     FormsModule,
+    
     IonicModule.forRoot({hardwareBackButton: false}),
     ComponentModule,
    
@@ -27,6 +29,7 @@ import { HomePage } from './home.page';
   
   ],
   declarations: [HomePage],
+  providers:[ ]
   
 })
 export class HomePageModule {}

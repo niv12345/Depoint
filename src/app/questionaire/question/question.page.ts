@@ -19,6 +19,7 @@ export class QuestionPage implements OnInit {
                           let qdata;
                           this.route.params.subscribe(res =>{
                           qdata = JSON.parse(res.item);
+                   
                           this.itemID = qdata.id;
                           this.typeID = qdata.type_id;
                           this.catID = qdata.catid;
@@ -47,6 +48,7 @@ export class QuestionPage implements OnInit {
                   if(this.questinaryData){
                   
                   this.questionArray = this.questinaryData.fields.questionnaire;
+                 
                 //  localStorage.setItem('QUESTARRAY',JSON.stringify(this.questionArray));
                   }
   }

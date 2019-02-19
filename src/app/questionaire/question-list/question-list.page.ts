@@ -29,6 +29,7 @@ export class QuestionListPage implements OnInit {
     this.route.params.subscribe(res=>{
      
       this.questions = JSON.parse(res.item);
+     
       let itemID = res.itemid;
       let questionID = this.questions.id;  
       let typeID = res.typeid; 

@@ -1,14 +1,14 @@
 
-<div *ngIf="question && question.qtype!=undefined" >
+<div *ngIf="question !=undefined" >
     <div [formGroup]="form" #Content>
       <p class="qst" [attr.for]="question.id" >{{question.question}}</p>
       <div [ngSwitch]="question.qtype">
         <div *ngSwitchCase="'1'">
                 <div *ngIf="question.multichoice == 0" >
-                            <input class="ipbox"  
+                            <ion-input class="ipbox"  
                             [formControlName]="question.id"
                             [id]="question.id" type="text" 
-                            (change)="chkData($event,question)" >
+                            (change)="chkData($event,question)" ></ion-input>
                             <div style="color: red; padding-top: 0.2rem" *ngIf="req(question.required)"> Required</div>
                             <!-- <div *ngIf="submitted && f.qntname.errors" class="invalid-feedback">
                                     <div *ngIf="f.qntname.errors.required">First Name is required</div>
@@ -27,23 +27,30 @@
         </div>    
         <div *ngSwitchCase="'2'">
                  <div class="radio">
-                        <div  *ngFor="let item of question.options; let i = index;" [attr.for]="item">
-                         <input type="checkbox"  
+                                <ion-radio-group>  
+           
+                                                <ion-item lines="none" *ngFor="let item of question.options; let i = index;" [attr.for]="item" class="txt">
+                                                   <ion-radio slot="start" [value]="item" (ionSelect)="changeValue($event,question.id,item.id)"  ></ion-radio>
+                                                      {{item.qoption | titlecase}}
+                                                   </ion-item>
+                                               </ion-radio-group>
+                        <!-- <div  *ngFor="let item of question.options; let i = index;" [attr.for]="item">
+                         <ion-input type="radio"  
                                 class="chkbox"   
                                 [id]="item.id" 
                                 [value]="item.id" 
                                 (change)="changeValue($event,question.id,item.id)"  >
                            &nbsp;{{item.qoption}}
-                    </div>
+                    </div> -->
                     <div style="color: red; padding-top: 0.2rem" *ngIf="req(question.required)"> Required</div>
             </div>
         </div>  
         <div *ngSwitchCase="'3'">
            <div *ngIf="question.usecamera==0">
                    <br>
-                    <div  text-center [hidden]="!showInput" >
+                    <div  text-center [hidden]="!showion-input" >
                                     <img src="assets/imgs/clk_file.svg" type="file" width=200 class="camera" (click)="file.click()" value=getFile ><br>
-                                    <input type="file" accept="image/*" #file [hidden]="true" (change)="selectdocFile($event,question.id)">
+                                    <ion-input type="file" accept="image/*" #file [hidden]="true" (change)="selectdocFile($event,question.id)"></ion-input>
                                     <div style="color: red; padding-top: 0.2rem" *ngIf="req(question.required)"> Required</div>
                             </div>
            </div>  
@@ -56,15 +63,15 @@
             </div>   
         </div>
         <div *ngSwitchCase="'4'">
-                    <input class="ipbox"  
+                    <ion-input class="ipbox"  
                     [formControlName]="question.id"
-                    [id]="question.id" type="number" >
+                    [id]="question.id" type="number" ></ion-input>
                     <div style="color: red; padding-top: 0.2rem" *ngIf="req(question.required)"> Required</div>
         </div>
         <div *ngSwitchCase="'5'" >
-                    <input type="date" displayFormat="MMMM DD YYYY"  class="ipbox" 
+                    <ion-input type="date" displayFormat="MMMM DD YYYY"  class="ipbox" 
                     [formControlName]="question.id"
-                    [id]="question.id" type="date" >
+                    [id]="question.id" type="date" ></ion-input>
                     <div style="color: red; padding-top: 0.2rem" *ngIf="req(question.required)"> Required</div>
         </div>
          <div *ngSwitchCase="'6'">             
@@ -76,22 +83,21 @@
                             <div style="color: red; padding-top: 0.2rem" *ngIf="req(question.required)"> Required</div>      
          </div>
          <div *ngSwitchCase="'7'" >
-                    <input type="time" class="ipbox"   [formControlName]="question.id"
-                    [id]="question.id" >
+                    <ion-input type="time" class="ipbox"   [formControlName]="question.id"
+                    [id]="question.id" ></ion-input>
                     <div style="color: red; padding-top: 0.2rem" *ngIf="req(question.required)"> Required</div>
          </div>
           <div *ngSwitchCase="'8'" >
                  <ion-button expand="full" (click)="openModal(question)">Signature Pad</ion-button>
-                 <div><input type="image" [src]="signatureImg" 
-                    [id]="question.id" *ngIf="signatureImg" /></div>
+                 <!-- <div><ion-input type="image" [id]="question.id" *ngIf="signatureImg" ></ion-input></div> -->
                     <div style="color: red; padding-top: 0.2rem" *ngIf="req(question.required)"> Required</div>
                  
          </div>
        
          <div *ngSwitchCase="'9'" >
-                    <input class="ipbox" 
+                    <ion-input class="ipbox" 
                     [formControlName]="question.id"
-                    [id]="question.id" [type]="question.qtype" >   
+                    [id]="question.id" [type]="question.qtype" >   </ion-input>
                     <div style="color: red; padding-top: 0.2rem" *ngIf="req(question.required)"> Required</div>
          </div>
          <div text-wrap *ngSwitchCase="'10'"> 
@@ -123,7 +129,7 @@
                     <div  class="ipbox1" >
                             <img src="assets/imgs/ic_file.svg" id="ic" width=13>&nbsp;
                             <b class="fname" >{{getFile}}</b>
-                            <!-- <input type="file" accept="image/*" #file [hidden]="true" (change)="selectdocFile($event,question.id)"> -->
+                            <!-- <ion-input type="file" accept="image/*" #file [hidden]="true" (change)="selectdocFile($event,question.id)"> -->
                     </div><br>
                    <div text-center class="camera"> 
                            <img src="assets/imgs/btn_delete.svg" width=100  (click)="clkDelBtn(selectedFiles)">&nbsp;

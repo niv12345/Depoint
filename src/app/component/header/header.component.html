@@ -12,8 +12,8 @@
             </ion-col>
         <ion-col size="7" text-end>
              <img src="assets/imgs/search-icon.svg"  mouseover style="cursor: pointer;" (click)="toggle()"  class="search" >
-            <img src="assets/imgs/earth.svg" (click)="onClkGlobe()" mouseover style="cursor: pointer;"  class="earth" >  <span class="bdge1"><ion-badge color="danger">{{bdgeEarth}}</ion-badge></span>
-            <img src="assets/imgs/bell.svg" mouseover style="cursor: pointer;" (click)="onClkBell()"  class="bell" > <span class="bdge2"><ion-badge color="danger">{{bdgeBell}}</ion-badge></span> 
+            <img src="assets/imgs/earth.svg" (click)="onClkGlobe()" mouseover style="cursor: pointer;"  class="earth" >  <span *ngIf="bdgeEarth>0"  class="bdge1"><ion-badge color="danger">{{bdgeEarth}}</ion-badge></span>
+            <img src="assets/imgs/bell.svg" mouseover style="cursor: pointer;" (click)="onClkBell()"  class="bell" > <span *ngIf="bdgeBell>0" class="bdge2"><ion-badge color="danger">{{bdgeBell}}</ion-badge></span> 
            <img src="assets/imgs/menu.svg" mouseover style="cursor: pointer;" (click)="openMenu()"  item-end class="menu" >
     
         </ion-col>

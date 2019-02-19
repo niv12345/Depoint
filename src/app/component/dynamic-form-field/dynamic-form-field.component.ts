@@ -83,10 +83,17 @@ export class DynamicFormFieldComponent implements OnInit {
 
 upload() {
   const files = this.selectedFiles;
+  console.log('FIMG :',files);
   for(let i=0;i<files.length;i++){ 
   this.awsProvider.uploadfile(files.item(i),this.question.aws);
   }
   
 }
-
+changeValue(e,qid,aid){
+  console.log('AID :',e);
+  // this.arr.push(aid);
+  // this.form.patchValue({qid:this.arr});
+  this.form.get(qid).setValue(aid);
+  }
+  
 }
