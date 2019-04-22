@@ -1,0 +1,114 @@
+<ion-header>
+
+  <ion-toolbar>
+      <ion-back-button>
+      
+        </ion-back-button>  
+       
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+          <label>Title</label>
+          <ion-input class="ipbox txt" type="text">
+            </ion-input>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col>
+            <ion-label>A saved list is</ion-label>
+            <div class="ipbox2 txt">
+                <ion-searchbar   autocomplete (ionChange)="searchItem($event)"></ion-searchbar>
+                <ion-list>
+                    <ion-item *ngFor="let item of selArray">
+                        <ion-label >
+                            {{item}}
+                        </ion-label>
+                        <ion-icon name="close" slot="end" (click)="delArray(item)"></ion-icon>
+                    </ion-item>         
+                    </ion-list>
+                <!-- <ion-select class=" txt" placeholder="Select One" multiple="true" cancelText="Cancel" okText="Ok" (ionSelect)="clkItem($event)" >
+                  <ion-select-option *ngFor="let item of selArray" [value]="item" >{{item}}</ion-select-option>                 
+                </ion-select> -->
+            </div>
+            
+         
+             
+        </ion-col>
+      </ion-row>
+      <ion-row>
+
+      </ion-row>
+      <ion-row >
+          <ion-col>
+              <label>Extended text</label>
+              <ion-textarea  class="ipbox txt" type="text">
+                </ion-textarea >
+          </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+           
+              <ion-col>
+                  <ion-label>For immediate execution</ion-label>
+                <ion-item lines="none">
+                 No  <ion-toggle color="dark">  </ion-toggle>Yes
+                </ion-item>
+                
+              </ion-col>
+            </ion-row>
+            <ion-row>
+                
+                  <ion-col>
+                      <ion-label>Show new users</ion-label>
+                    <ion-item lines="none">                    
+                        No  <ion-toggle color="dark">  </ion-toggle>YES
+                    </ion-item>
+           
+                  </ion-col>
+                </ion-row> 
+                <ion-row>
+                  <ion-col>
+                    
+                  </ion-col>
+                </ion-row>
+               
+  </ion-grid>
+<ion-card>
+    <ion-grid>
+        <ion-row  >
+      
+          <ion-col *ngFor="let item of btnArray;let i=index">
+            <div *ngIf=" item.type != 'workflow' && item.type != 'mul_response'">
+                <ion-button expand="block" fill="outline" size="small" color="dark" (click)="onClkBtn(item)">{{item.label}}</ion-button>
+            </div>          
+          <ion-item lines="none" class="txt" *ngIf=" item.type == 'mul_response'">   
+                
+                  No  <ion-toggle color="dark">  </ion-toggle>YES&nbsp;<p class="txt">Allow multiple answer</p>  
+                </ion-item>
+                
+            <ion-item lines="none" *ngIf=" item.type == 'workflow'">
+              <ion-searchbar   autocomplete (ionInput)="searchItem2($event,item.options)" placeholder="Select workflow"></ion-searchbar>
+            </ion-item>
+          </ion-col>
+     
+        </ion-row>
+      </ion-grid>
+</ion-card>
+<div *ngIf="d.length>0" >
+  <app-input-item [item]="d"></app-input-item>
+</div>
+
+
+ <ion-list>
+
+ </ion-list> 
+
+
+</ion-content>

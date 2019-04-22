@@ -1,3 +1,4 @@
+
 import { MaterialModule } from './../material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
@@ -14,12 +15,18 @@ import { RadiobuttonComponent } from './radiobutton/radiobutton.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
 import { SignatureComponent } from './signature/signature.component';
 import { FileuploadComponent } from './fileupload/fileupload.component';
-import { DynamicFieldDirective } from '../directive/dynamic-field.directive';
+
 import { DynamicFormFieldComponent } from './dynamic-form-field/dynamic-form-field.component';
 import { SignaturePadModule } from 'angular2-signaturepad';
 import { QuestionFormComponent } from './question-form/question-form.component';
 import { QuestionFormFieldComponent } from './question-form-field/question-form-field.component';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { EditorComponent } from './editor/editor.component';
+import { DropdownComponent } from './dropdown/dropdown.component';
+import { InputItemComponent } from './input-item/input-item.component';
+import { InputItemsFieldComponent } from './input-items-field/input-items-field.component';
+import { DragulaService } from 'ng2-dragula';
+
 @NgModule({
   declarations: [
     HeaderComponent, 
@@ -33,10 +40,14 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
     CheckboxComponent, 
     SignatureComponent, 
     FileuploadComponent,
-    DynamicFieldDirective,
+  
     DynamicFormFieldComponent,
     QuestionFormComponent,
-    QuestionFormFieldComponent
+    QuestionFormFieldComponent,
+    EditorComponent,
+    DropdownComponent,
+    InputItemComponent,
+    InputItemsFieldComponent
   ],
   imports: [
     IonicModule,
@@ -44,7 +55,10 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    SignaturePadModule 
+    SignaturePadModule
+
+ 
+ 
   ],
   exports:[
     HeaderComponent, 
@@ -58,9 +72,15 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
     CheckboxComponent, 
     SignatureComponent, 
     FileuploadComponent,
-    DynamicFieldDirective,
+ 
     QuestionFormComponent,
-    QuestionFormFieldComponent
+    QuestionFormFieldComponent,
+    EditorComponent,
+    DropdownComponent,
+    InputItemComponent,
+    InputItemsFieldComponent,
+   
+
   ],
   entryComponents:[
     HeaderComponent, 
@@ -75,10 +95,16 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
     SignatureComponent, 
     FileuploadComponent,
     QuestionFormComponent,
-    QuestionFormFieldComponent
+    QuestionFormFieldComponent,
+    EditorComponent,
+    DropdownComponent,
+    InputItemComponent,
+    InputItemsFieldComponent,
+
+
   ],
   providers:[
-    Camera
+    Camera,DragulaService
   ]
 })
 export class ComponentModule { }

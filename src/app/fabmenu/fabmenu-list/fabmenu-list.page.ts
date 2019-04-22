@@ -41,25 +41,28 @@ export class FabmenuListPage implements OnInit {
    this.showLoading();
     if(selectedItem.published == 1){
         this.apiService.GetFabFormData(selectedItem.appurl).subscribe(res =>{
-       
+      
         
           if(res.data.fields != null || res.data.fields != undefined){
             this.key = Object.keys(res.data.fields); 
            
             this.key.forEach(element => {
               if(res.data.fields[element] && res.data.fields[element].field_type!=undefined && res.data.fields[element].field_type == "questionnairedisplay"){
-                this.loadingCtrl.dismiss();
+               
                 this.fabFormData = res.data.fields[element].fielddata;
                 this.router.navigate(['fab-form',{
                   formdata:JSON.stringify(this.fabFormData),
                   itemtitle:JSON.stringify(selectedItem.title),
                   typeid:JSON.stringify(res.data.type_id),
                   key:JSON.stringify(element) }],{skipLocationChange: true});
-// this.navCtrl.push('fablist-form',{formdata:this.fabFormData,
-//                                   itemtitle:selectedItem.title,
-//                                   typeid:res.data.type_id,
-//                                   key:this.key});
-this.modalControl.dismiss(null,undefined);
+                  this.loadingCtrl.dismiss();
+
+              this.modalControl.dismiss(null,undefined);
+              }else{
+                
+                 this.modalControl.dismiss(null,undefined);
+                this.loadingCtrl.dismiss();
+                this.router.navigate(['base-item',{element:JSON.stringify(res.data.fields)}],{skipLocationChange:true});
               }
             });
             // if(res.data.fields[this.key].field_type == "questionnairedisplay"){

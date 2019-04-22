@@ -32,6 +32,14 @@ export class ApiService {
     return this.http.get(url + '/ws/v1/lang').pipe();
       
   }
+  getfabformData(link):Observable<any>{
+   
+    return this.http.get(this.BASE_URL + link).pipe();
+  }
+  getfabformSearchData(link,str):Observable<any>{
+    console.log(str);
+    return this.http.get(this.BASE_URL + link+'&search='+str).pipe();
+  }
   SetUserLogin(data,uid):  Observable<any>{
  
     

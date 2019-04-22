@@ -12,6 +12,7 @@ const routes: Routes = [
   { path: 'home', loadChildren: './home/home.module#HomePageModule' ,canActivate:[AuthGuardService]  },
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' }, 
   { path: 'fab-form', loadChildren: './fabmenu/fab-form/fab-form.module#FabFormPageModule'},
+  { path: 'base-item', loadChildren: './fabmenu/base-item/base-item.module#BaseItemPageModule'},
   { path: 'frontView', loadChildren: './front-view/front-view.module#FrontViewPageModule' },
   { path: 'notification', loadChildren: './notifications/notifications.module#NotificationsModule' },
   { path: 'detail', loadChildren: './front-view/detail/detail.module#DetailPageModule' },

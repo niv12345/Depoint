@@ -1,0 +1,69 @@
+
+  <!-- <div  dragula="PERSON" > -->
+    <ion-list>
+  <ion-reorder-group (ionItemReorder)="onRenderItems($event)" disabled="false">
+    <div *ngFor="let it of item;let i = index;">
+      <div *ngIf="it.type!='addBundleSection'">
+          <ion-card >       
+              <ion-card-header>
+                <ion-item lines="none">
+                    <ion-label slots="start">
+                        {{it.label}}
+                    </ion-label><ion-reorder></ion-reorder>
+                    <ion-icon name="trash" size="large" slots="end" (click)="onClickDel(i)"></ion-icon>
+                </ion-item>
+               </ion-card-header>
+        <ion-card-content>
+              <app-input-items-field [fieldtype]="data[i]" [form]="form" >
+               </app-input-items-field>
+        </ion-card-content>
+     
+  
+  </ion-card> 
+      </div>
+      <div *ngIf="it.type=='addBundleSection'"  style="border: 3px dashed gray !important;"  >
+    <ion-reorder>    <ion-list>
+         
+          <!-- <ion-reorder-group (keyup)="rec($event)" disabled="false">
+              -->
+        <ion-card >       
+              <ion-card-header>
+                <ion-item lines="none">
+                    <ion-label slots="start">
+                        {{it.label}}
+                    </ion-label>
+                 
+                    <ion-icon name="trash" size="large" slots="end" (click)="onClickDel(i)"></ion-icon>
+                </ion-item>
+               </ion-card-header>
+        <ion-card-content>
+              <app-input-items-field [fieldtype]="data[i]" [form]="form" >
+               </app-input-items-field>
+        </ion-card-content>
+     
+  
+  </ion-card> 
+<!--              
+</ion-reorder-group> -->
+</ion-list></ion-reorder>
+      </div>
+
+    </div>
+   
+
+</ion-reorder-group>
+</ion-list>
+<!-- </div> -->
+
+
+<!-- <ul *ngFor="let category of items"
+[dragula]='"items"'
+dragulaName="items">
+<li id="{{ category.id }}">{{category.name}}
+     
+{{category.id}}</li>
+</ul> -->
+
+
+
+

@@ -1,4 +1,6 @@
 
+
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
@@ -19,6 +21,8 @@ import { AndroidFingerprintAuth } from '@ionic-native/android-fingerprint-auth/n
 import { OneSignal } from '@ionic-native/onesignal/ngx';
 import { Base64 } from '@ionic-native/base64/ngx';
 
+
+
 @NgModule({
   declarations: [AppComponent,FabmenuListPage],
   entryComponents: [FabmenuListPage],
@@ -26,7 +30,7 @@ import { Base64 } from '@ionic-native/base64/ngx';
   imports: [
             BrowserModule, 
             HttpClientModule,
-           
+            
             MaterialModule,
             IonicModule.forRoot(), AppRoutingModule,
             IonicStorageModule.forRoot(),
@@ -40,10 +44,10 @@ import { Base64 } from '@ionic-native/base64/ngx';
     OneSignal,
     FingerprintAIO,
     Base64,
+ 
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     AuthGuardService
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
-100929608493

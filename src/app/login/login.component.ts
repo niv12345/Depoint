@@ -155,9 +155,10 @@ this.oneSignal.endInit();
                         
                            
                               this.presentToast('Login successfully');
-                              this.ngForm.reset();
                               this.router.navigate(['/home']);
-                              this.showList = !this.showList;
+                              this.ngForm.reset();
+                              
+                              this.showList = !this.showList;console.log('HOME');
                              
   
       }else{
@@ -187,8 +188,8 @@ this.oneSignal.endInit();
     this.disableBtn = true;
     this.showList = !this.showList;
     this.showLoading();
-    localStorage.setItem('BASE_URL',this.baseURL);
-   
+   // localStorage.setItem('BASE_URL',this.baseURL);
+    localStorage.setItem('BASE_URL','https://castro4.depoint.app');
     this.getLang(this.baseURL);
  
   }

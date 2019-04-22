@@ -1,0 +1,249 @@
+
+<div *ngIf="fieldtype !=undefined" >
+    <div [formGroup]="form" #Content>
+      <!-- <p class="qst" [attr.for]="fieldtype.label" >{{fieldtype.label}}</p> -->
+      <div [ngSwitch]="fieldtype.type">
+        <div *ngSwitchCase="'addQuestS'">
+                        <ion-row>
+                                        <ion-col>
+                                            <label>Title</label>
+                                            
+                                            <input class="ipbox1 txt" name="na" type="text">    
+                                           
+                                             
+                                        </ion-col>
+                                      </ion-row>
+                                 
+         <ion-row *ngIf="fieldtype.required">
+           <ion-col size="6"  >  <ion-item lines="none">
+              No <ion-toggle></ion-toggle> Yes 
+         
+          </ion-item>? Required field</ion-col>
+           <ion-col size="6" slots="end">  <ion-item lines="none" slots="end">
+              No <ion-toggle></ion-toggle> Yes 
+         
+          </ion-item>? Required field</ion-col>
+         </ion-row>
+         
+       
+               
+        </div>
+       
+        <div *ngSwitchCase="'addQuestPara'">
+            <ion-input class="ipbox"></ion-input>
+        </div>  
+        <div *ngSwitchCase="'addQuestYN'">
+            <ion-input class="ipbox"></ion-input>
+            <ion-row *ngIf="fieldtype.required">
+                    <ion-col size="6"  >  <ion-item lines="none">
+                            No <ion-toggle></ion-toggle> Yes 
+                            </ion-item>?Required field
+                            </ion-col>
+            </ion-row>
+           
+        </div>
+        <div *ngSwitchCase="'addQuestBranch'">
+                <ion-input class="ipbox"></ion-input>
+                <ion-row *ngIf="fieldtype.required">
+                        <ion-col size="6"  >  <ion-item lines="none">
+                                No <ion-toggle></ion-toggle> Yes 
+                                </ion-item>?Required field
+                                </ion-col>
+                </ion-row>
+        </div>
+        <div *ngSwitchCase="'addQuestEmp'" >
+                <ion-input class="ipbox"></ion-input>
+                <ion-row *ngIf="fieldtype.required">
+                        <ion-col size="6"  >  <ion-item lines="none">
+                                No <ion-toggle></ion-toggle> Yes 
+                                </ion-item>?Required field
+                                </ion-col>
+                                <ion-col size="6"  >  <ion-item lines="none">
+                                        Only <ion-toggle></ion-toggle> Multi  
+                                        </ion-item>Type 
+                                        </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col *ngIf="fieldtype.empQuesType" >
+                        <ion-select class="iptbox">
+                            <ion-select-option [value]="item.value" *ngFor="let item of fieldtype.empQuesType" >
+                                    {{item.label}}
+                            </ion-select-option>
+                        </ion-select>
+                    </ion-col>
+                </ion-row>
+      </div>
+         <div *ngSwitchCase="'addQuestDisplayImage'"> 
+                        <ion-input class="ipbox txt" #files type="file" 
+       
+                         placeholder="Choose File" multiple></ion-input>            
+        </div>
+         <div *ngSwitchCase="'addBundleSection'"  >
+         
+                <div dragula="de">
+                                <ion-col>
+                                                <ion-input class="ipbox"></ion-input>
+                                   </ion-col>
+                </div>
+       </div>
+          <div *ngSwitchCase="'addQuestM'" >
+                        <ion-row>
+                                        <ion-col>
+                                                     <ion-input class="ipbox"></ion-input>
+                                        </ion-col>
+                                </ion-row>
+                                    
+                                <ion-row>
+                                         <ion-col>
+                                                     <ion-input class="ipbox"></ion-input>
+                                         </ion-col>
+                                </ion-row>
+                            
+                                <ion-row>
+                                             <ion-col *ngIf="fieldtype.datalist" >
+                                                 <ion-select class="iptbox">
+                                                     <ion-select-option [value]="item.value" *ngFor="let item of fieldtype.datalist" >
+                                                             {{item.label}}
+                                                     </ion-select-option>
+                                                 </ion-select>
+                                             </ion-col>
+                 
+                                         </ion-row>
+                                         <ion-row >
+                                                     <ion-col size="6" >
+                                                               <ion-item lines="none">
+                                                                No <ion-toggle></ion-toggle> Yes 
+                                                                </ion-item>?Required field
+                                                      </ion-col>
+                                                      <ion-col size="6"  > 
+                                                               <ion-item lines="none">
+                                                                        No <ion-toggle></ion-toggle> Yes  
+                                                                        </ion-item>Filters 
+                                                      </ion-col>
+                                           </ion-row>
+                                     
+              
+         </div>
+       
+         <div *ngSwitchCase="'addQuestU'" >
+                        <ion-input class="ipbox"></ion-input>
+                        <ion-row *ngIf="fieldtype.required">
+                                <ion-col size="6"  >  <ion-item lines="none">
+                                        No <ion-toggle></ion-toggle> Yes 
+                                        </ion-item>?Required field
+                                        </ion-col>
+                                      
+                        </ion-row>
+                        <ion-row>
+                            <ion-col *ngIf="fieldtype.filetypes" >
+                                <ion-select class="iptbox">
+                                    <ion-select-option [value]="item.value" *ngFor="let item of fieldtype.filetypes" >
+                                            {{item.label}}
+                                    </ion-select-option>
+                                </ion-select>
+                            </ion-col>
+
+                        </ion-row>
+                        <ion-row>
+                                <ion-col>
+                                                <ion-input class="ipbox"></ion-input>
+                                </ion-col>
+                        </ion-row>
+
+     </div>
+         <div text-wrap *ngSwitchCase="'addQuestNum'"> 
+                <ion-input class="ipbox"></ion-input>
+                <ion-row *ngIf="fieldtype.required">
+                        <ion-col size="6"  >  <ion-item lines="none">
+                                No <ion-toggle></ion-toggle> Yes 
+                                </ion-item>?Required field
+                                </ion-col>
+                </ion-row>
+         </div>   
+         <div *ngSwitchCase="'addQuestDate'" text-center >
+                <ion-input class="ipbox"></ion-input>
+                <ion-row >
+                        <ion-col size="6"  >  <ion-item lines="none">
+                                No <ion-toggle></ion-toggle> Yes 
+                                </ion-item>?Required field
+                                </ion-col>
+                                <ion-col size="6"  >  <ion-item lines="none">
+                                        No <ion-toggle></ion-toggle> Yes  
+                                        </ion-item>Filters 
+                                        </ion-col>
+                </ion-row>
+         </div>
+         <!-- <ion-toggle *ngSwitchCase="11" text-center  [formControlName]="fieldtype.id" (ionChange)="toggleYes($event)"
+         [id]="fieldtype.id" >
+         </ion-toggle>       
+           -->
+           <div text-wrap *ngSwitchCase="'addQuestDrop'"> 
+                   <ion-row>
+                           <ion-col>
+                                        <ion-input class="ipbox"></ion-input>
+                           </ion-col>
+                   </ion-row>
+                       
+                   <ion-row>
+                            <ion-col>
+                                        <ion-input class="ipbox"></ion-input>
+                            </ion-col>
+                   </ion-row>
+               
+                   <ion-row>
+                                <ion-col *ngIf="fieldtype.datalist" >
+                                    <ion-select class="iptbox">
+                                        <ion-select-option [value]="item.value" *ngFor="let item of fieldtype.datalist" >
+                                                {{item.label}}
+                                        </ion-select-option>
+                                    </ion-select>
+                                </ion-col>
+    
+                            </ion-row>
+                            <ion-row >
+                                        <ion-col size="6" >
+                                                  <ion-item lines="none">
+                                                   No <ion-toggle></ion-toggle> Yes 
+                                                   </ion-item>?Required field
+                                         </ion-col>
+                                         <ion-col size="6"  > 
+                                                  <ion-item lines="none">
+                                                           No <ion-toggle></ion-toggle> Yes  
+                                                           </ion-item>Filters 
+                                         </ion-col>
+                              </ion-row>
+                    
+      </div>
+      <div text-wrap *ngSwitchCase="'addQuestTime'"> 
+            <ion-input class="ipbox"></ion-input>
+            <ion-row *ngIf="fieldtype.required">
+                    <ion-col size="6"  >  <ion-item lines="none">
+                            No <ion-toggle></ion-toggle> Yes 
+                            </ion-item>?Required field
+                            </ion-col>
+            </ion-row> 
+  </div>
+  <div text-wrap *ngSwitchCase="'addQuestSign'"> 
+        <ion-input class="ipbox"></ion-input>
+                <ion-row *ngIf="fieldtype.required">
+                        <ion-col size="6"  >  <ion-item lines="none">
+                                No <ion-toggle></ion-toggle> Yes 
+                                </ion-item>?Required field
+                                </ion-col>
+                </ion-row> 
+</div>
+<div text-wrap *ngSwitchCase="'addQuestChapter'"> 
+    <p>
+            
+    </p>  
+</div>
+
+      </div> 
+    
+    </div>
+    
+    
+   
+    </div>
+ 
+           
